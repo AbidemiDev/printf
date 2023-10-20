@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _format - Receives the main string and all the
+ * format_reciever - Receives the main string and all the
  * necessary parameters to print a formated string.
  * @format: A string containing all the desired characters.
  * @f_list: A list of all the posible functions.
@@ -9,7 +9,7 @@
  * Return: A total count of the characters printed.
  */
 
-int _format(const char *format, conver_t f_list[], va_list arg_list)
+int format_reciever(const char *format, conver_t f_list[], va_list arg_list)
 {
 	int i, j, r_val, printed_chars;
 
@@ -18,9 +18,9 @@ int _format(const char *format, conver_t f_list[], va_list arg_list)
 	{
 		if (format[i] == '%')
 		{
-			for (j = 0; f_list[j].sys != NULL; j++)
+			for (j = 0; f_list[j].sym != NULL; j++)
 			{
-				if (format[i + 1] == f_list[j].sys[0])
+				if (format[i + 1] == f_list[j].sym[0])
 				{
 					r_val = f_list[j].f(arg_list);
 					if (r_val == -1)
@@ -29,7 +29,7 @@ int _format(const char *format, conver_t f_list[], va_list arg_list)
 					break;
 				}
 			}
-			if (f_list[j].sys == NULL && format[i + 1] != ' ')
+			if (f_list[j].sym == NULL && format[i + 1] != ' ')
 			{
 				if (format[i + 1] != '\0')
 				{
